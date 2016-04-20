@@ -1,6 +1,6 @@
 Name:           libfdk-aac
 Version:        0.1.4
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Fraunhofer FDK Advanced Audio Coding Codec Library
 
 License:        Software License for The Fraunhofer FDK AAC Codec Library for Android
@@ -22,6 +22,11 @@ developing applications that use %{name}.
 %setup -qn fdk-aac-%{version}
 
 %build
+%if 0%{?fedora} > 23 || 0%{?rhel} > 8
+# Override C++ flags for GCC 6+
+export CXXFLAGS="%{optflags} -Wno-narrowing"
+%endif
+
 %configure --disable-static
 
 %install
@@ -45,6 +50,9 @@ find %{buildroot} -name "*.la" -delete
 %{_libdir}/pkgconfig/fdk-aac.pc
 
 %changelog
+* Wed Apr 20 2016 Simone Caronni <negativo17@gmail.com> - 0.1.4-4
+- Override C++ flags for GCC 6+.
+
 * Tue Apr 19 2016 Simone Caronni <negativo17@gmail.com> - 0.1.4-3
 - Fix package summary and source URL.
 
