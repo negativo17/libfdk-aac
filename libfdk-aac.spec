@@ -25,7 +25,7 @@ Fraunhofer FDK Advanced Audio Coding Codec Library for Android.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:       fdk-aac-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:       fdk-aac-devel%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      fdk-aac-devel < %{?epoch:%{epoch}:}%{version}-%{release}
