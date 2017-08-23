@@ -1,16 +1,12 @@
-%global commit0 cb57d89522806f8161fdbc05d1039e1a3ff5ef76
-%global date 20160924
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-
 Name:           libfdk-aac
 Version:        0.1.5
-Release:        6%{?shortcommit0:.%{date}git%{shortcommit0}}%{?dist}
+Release:        7%{?dist}
 Epoch:          1
 Summary:        Fraunhofer FDK Advanced Audio Coding Codec Library
 License:        Software License for The Fraunhofer FDK AAC Codec Library for Android
 URL:            http://sourceforge.net/projects/opencore-amr/
 
-Source0:        https://sourceforge.net/code-snapshots/git/o/op/opencore-amr/fdk-aac.git/opencore-amr-fdk-aac-%{commit0}.zip#/fdk-aac-%{shortcommit0}.zip
+Source0:        http://downloads.sourceforge.net/opencore-amr/fdk-aac/fdk-aac-%{version}.tar.gz
 
 Provides:       fdk-aac = %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:       fdk-aac%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
@@ -35,7 +31,7 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%setup -qn opencore-amr-fdk-aac-%{commit0}
+%setup -qn fdk-aac-%{version}
 
 %build
 autoreconf -vif
@@ -51,9 +47,7 @@ find %{buildroot} -name "*.la" -delete
 %postun -p /sbin/ldconfig
 
 %files
-%{!?_licensedir:%global license %%doc}
 %license NOTICE
-%doc ChangeLog
 %{_libdir}/*.so.*
 
 %files devel
@@ -63,6 +57,9 @@ find %{buildroot} -name "*.la" -delete
 %{_libdir}/pkgconfig/fdk-aac.pc
 
 %changelog
+* Tue Aug 22 2017 Simone Caronni <negativo17@gmail.com> - 1:0.1.5-7
+- Update to final 0.1.5.
+
 * Sat Oct 08 2016 Simone Caronni <negativo17@gmail.com> - 1:0.1.5-6.20160924gitcb57d89
 - Update to latest snapshot.
 - Use packaging guidelines for snapshot format.
