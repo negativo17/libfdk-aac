@@ -31,23 +31,22 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%setup -qn fdk-aac-%{version}
+%autosetup -n fdk-aac-%{version}
 
 %build
 autoreconf -vif
 %configure --disable-static
-make %{?_smp_mflags}
+%make_build
 
 %install
 %make_install
 find %{buildroot} -name "*.la" -delete
 
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
+%ldconfig_scriptlets
 
 %files
 %license NOTICE
+%doc ChangeLog
 %{_libdir}/*.so.*
 
 %files devel
@@ -59,6 +58,7 @@ find %{buildroot} -name "*.la" -delete
 %changelog
 * Fri Jun 29 2018 Simone Caronni <negativo17@gmail.com> - 1:0.1.6-1
 - Update to 0.1.6.
+- Clean up SPEC file.
 
 * Tue Aug 22 2017 Simone Caronni <negativo17@gmail.com> - 1:0.1.5-7
 - Update to final 0.1.5.
