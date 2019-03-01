@@ -17,7 +17,7 @@ Obsoletes:      fdk-aac-free < %{?epoch:%{epoch}:}%{version}-%{release}
 
 BuildRequires:  autoconf
 BuildRequires:  automake
-BuildRequires:  gcc
+BuildRequires:  gcc-c++
 BuildRequires:  libtool
 
 %description
