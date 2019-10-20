@@ -1,5 +1,5 @@
 Name:           libfdk-aac
-Version:        2.0.0
+Version:        2.0.1
 Release:        1%{?dist}
 Epoch:          1
 Summary:        Fraunhofer FDK Advanced Audio Coding Codec Library
@@ -63,6 +63,9 @@ find %{buildroot} -name "*.la" -delete
 %{_libdir}/pkgconfig/fdk-aac.pc
 
 %changelog
+* Sun Oct 20 2019 Simone Caronni <negativo17@gmail.com> - 1:2.0.1-1
+- Update to 2.0.1.
+
 * Fri Mar 01 2019 Simone Caronni <negativo17@gmail.com> - 1:2.0.0-1
 - Update to 2.0.0.
 
