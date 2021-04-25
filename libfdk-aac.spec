@@ -1,6 +1,6 @@
 Name:           libfdk-aac
 Version:        2.0.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Epoch:          1
 Summary:        Fraunhofer FDK Advanced Audio Coding Codec Library
 License:        Software License for The Fraunhofer FDK AAC Codec Library for Android
@@ -54,15 +54,19 @@ find %{buildroot} -name "*.la" -delete
 %files
 %license NOTICE
 %doc ChangeLog
-%{_libdir}/*.so.*
+%{_libdir}/%{name}.so.2
+%{_libdir}/%{name}.so.2.0.1
 
 %files devel
 %doc documentation/*
 %{_includedir}/*
-%{_libdir}/*.so
+%{_libdir}/%{name}.so
 %{_libdir}/pkgconfig/fdk-aac.pc
 
 %changelog
+* Sun Apr 25 2021 Simone Caronni <negativo17@gmail.com> - 1:2.0.1-2
+- Be more explicit about library sonames.
+
 * Sun Oct 20 2019 Simone Caronni <negativo17@gmail.com> - 1:2.0.1-1
 - Update to 2.0.1.
 
