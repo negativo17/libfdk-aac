@@ -55,7 +55,7 @@ find %{buildroot} -name "*.la" -delete
 %license NOTICE
 %doc ChangeLog
 %{_libdir}/%{name}.so.2
-%{_libdir}/%{name}.so.2.0.1
+%{_libdir}/%{name}.so.%{version}
 
 %files devel
 %doc documentation/*
