@@ -1,12 +1,16 @@
+%global commit0 3f864cce9736cc8e9312835465fae18428d76295
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global date 20220531
+
 Name:           libfdk-aac
 Version:        2.0.2
-Release:        1%{?dist}
+Release:        2.%{date}git%{shortcommit0}%{?dist}
 Epoch:          1
 Summary:        Fraunhofer FDK Advanced Audio Coding Codec Library
 License:        Software License for The Fraunhofer FDK AAC Codec Library for Android
 URL:            http://sourceforge.net/projects/opencore-amr/
 
-Source0:        http://downloads.sourceforge.net/opencore-amr/fdk-aac/fdk-aac-%{version}.tar.gz
+Source0:        https://github.com/mstorsjo/fdk-aac/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
 
 Provides:       fdk-aac = %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:       fdk-aac%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
@@ -38,7 +42,7 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%autosetup -n fdk-aac-%{version}
+%autosetup -n fdk-aac-%{commit0}
 
 %build
 autoreconf -vif
@@ -64,6 +68,9 @@ find %{buildroot} -name "*.la" -delete
 %{_libdir}/pkgconfig/fdk-aac.pc
 
 %changelog
+* Sat Mar 11 2023 Simone Caronni <negativo17@gmail.com> - 1:2.0.2-2.20220531git3f864cc
+- Update to latest snapshot.
+
 * Fri Sep 17 2021 Simone Caronni <negativo17@gmail.com> - 1:2.0.2-1
 - Update to 2.0.2.
 
