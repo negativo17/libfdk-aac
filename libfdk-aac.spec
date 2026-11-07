@@ -1,6 +1,6 @@
 Name:           libfdk-aac
-Version:        2.0.3
-Release:        2%{?dist}
+Version:        3.0.0
+Release:        1%{?dist}
 Epoch:          1
 Summary:        Fraunhofer FDK Advanced Audio Coding Codec Library
 License:        Software License for The Fraunhofer FDK AAC Codec Library for Android
@@ -37,6 +37,22 @@ Obsoletes:      fdk-aac-free-devel < %{?epoch:%{epoch}:}%{version}-%{release}
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
+%package -n     libfdk-xhe-aac
+Summary:        Fraunhofer FDK Extended High Efficiency AAC Encoder Library
+License:        Software Copyright License for The Fraunhofer FDK Extended High Efficiency AAC Codec Library
+
+%description -n libfdk-xhe-aac
+Fraunhofer FDK Extended High Efficiency AAC (xHE-AAC) Encoder Library.
+
+%package -n     libfdk-xhe-aac-devel
+Summary:        Development files for libfdk-xhe-aac
+License:        Software Copyright License for The Fraunhofer FDK Extended High Efficiency AAC Codec Library
+Requires:       libfdk-xhe-aac%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+
+%description -n libfdk-xhe-aac-devel
+The libfdk-xhe-aac-devel package contains libraries and header files for
+developing applications that use libfdk-xhe-aac.
+
 %prep
 %autosetup -n fdk-aac-%{version}
 
@@ -53,15 +69,30 @@ find %{buildroot} -name "*.la" -delete
 %license NOTICE
 %doc ChangeLog
 %{_libdir}/%{name}.so.2
-%{_libdir}/%{name}.so.%{version}
+%{_libdir}/%{name}.so.2.*
 
 %files devel
-%doc documentation/*
-%{_includedir}/*
+%doc cpp/documentation/*
+%{_includedir}/fdk-aac
 %{_libdir}/%{name}.so
 %{_libdir}/pkgconfig/fdk-aac.pc
 
+%files -n libfdk-xhe-aac
+%license xhe-aac/NOTICE
+%{_libdir}/libfdk-xhe-aac.so.0
+%{_libdir}/libfdk-xhe-aac.so.0.*
+
+%files -n libfdk-xhe-aac-devel
+%doc xhe-aac/README.md
+%{_includedir}/fdk-xhe-aac
+%{_libdir}/libfdk-xhe-aac.so
+%{_libdir}/pkgconfig/fdk-xhe-aac.pc
+
 %changelog
+* Fri Nov 06 2026 Simone Caronni <negativo17@gmail.com> - 1:3.0.0-1
+- Update to 3.0.0.
+- Add libfdk-xhe-aac independent subpackages.
+
 * Thu Sep 26 2024 Simone Caronni <negativo17@gmail.com> - 1:2.0.3-2
 - Remove ldfconfig scriptlets.
 
